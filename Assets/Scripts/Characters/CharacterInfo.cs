@@ -8,12 +8,12 @@ namespace Lessons.Architecture.PM
     {
         public event Action<CharacterStat> OnStatAdded;
         public event Action<CharacterStat> OnStatRemoved;
-    
-        public HashSet<CharacterStat> _stats = new();
+
+        public HashSet<CharacterStat> Stats = new();
 
         public void AddStat(CharacterStat stat)
         {
-            if (_stats.Add(stat))
+            if (Stats.Add(stat))
             {
                 OnStatAdded?.Invoke(stat);
             }
@@ -21,7 +21,7 @@ namespace Lessons.Architecture.PM
 
         public void RemoveStat(CharacterStat stat)
         {
-            if (_stats.Remove(stat))
+            if (Stats.Remove(stat))
             {
                 OnStatRemoved?.Invoke(stat);
             }
@@ -29,7 +29,7 @@ namespace Lessons.Architecture.PM
 
         public CharacterStat GetStat(string name)
         {
-            foreach (var stat in _stats)
+            foreach (var stat in Stats)
             {
                 if (stat.Name == name)
                 {
@@ -42,7 +42,7 @@ namespace Lessons.Architecture.PM
 
         public CharacterStat[] GetStats()
         {
-            return _stats.ToArray();
+            return Stats.ToArray();
         }
     }
 }

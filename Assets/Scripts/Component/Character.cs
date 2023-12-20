@@ -7,21 +7,30 @@ namespace Lessons.Architecture.PM
     public sealed class Character : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private CharactersConfig _classCharacter;
+
         [SerializeField] private Renderer _material;
+
+        private CharacterManager _characterManager;
+
         private PopupManager _popupManager;
-
-
-        private PopupManager _popup;
 
         public void Awake()
         {
             _material.material.color = _classCharacter.CharacterColor;
-            _popup = new PopupManager();
+        }
+
+        [Inject]
+        private void Construct(CharacterManager characterManager, PopupManager popupManager)
+        {
+            _characterManager = characterManager;
+            _characterManager.CharacterInfoInitialize(_classCharacter);
+            _popupManager = popupManager;
+            _popupManager.PopupInitialize(_characterManager);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _popup.ShowPopupCharacter(_classCharacter);
+            _popupManager.ShowPopupCharacter();
         }
     }
 }

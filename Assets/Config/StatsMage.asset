@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbed4f71489ddb645a02378a1875d45b, type: 3}
+  m_Name: StatsMage
+  m_EditorClassIdentifier: 
+  StatsList:
+  - <Name>k__BackingField: Speed
+    <Value>k__BackingField: 30
+  - <Name>k__BackingField: Intellegence
+    <Value>k__BackingField: 50
+  - <Name>k__BackingField: Dexterity
+    <Value>k__BackingField: 20
+  - <Name>k__BackingField: Regeneration
+    <Value>k__BackingField: 10
+  AdvancedStatsList:
+  - <Name>k__BackingField: MagickDamage
+    <Value>k__BackingField: 50
+  - <Name>k__BackingField: MagickDefense
+    <Value>k__BackingField: 20

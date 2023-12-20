@@ -16,12 +16,12 @@ MonoBehaviour:
   Description: "\u0412\u043E\u0438\u043D"
   Icon: {fileID: 21300000, guid: 7c0892898786946a98a1057c9873611a, type: 3}
   CharacterColor: {r: 1, g: 0, b: 0, a: 0}
-  StatsConfig: {fileID: 0}
+  StatsConfig: {fileID: 11400000, guid: be85e4e9128a3d645938bdc75cc62fe0, type: 2}
   ExperienceAdd: 500
   StatsChange: 1
-  Speed: 15
-  Intellegence: 40
-  Stamina: 40
-  Damage: 70
+  Speed: 20
+  Intellegence: 55
+  Stamina: 25
+  Damage: 50
   Dexterity: 25
-  Regeneration: 2
+  Regeneration: 5

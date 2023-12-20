@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,14 +9,9 @@ namespace Lessons.Architecture.PM
     )]
     public sealed class CharacterStatsConfig : ScriptableObject
     {
-        public List<Stats> StatsList = new List<Stats>();
+        public List<CharacterStat> StatsList = new List<CharacterStat>();
+
+        public List<CharacterStat> AdvancedStatsList = new List<CharacterStat>();
     }
 
-    [Serializable]
-    public sealed class Stats
-    {
-        public string Name;
-        public int Value;
-        public int ChangeWithLevel;
-    }
 }

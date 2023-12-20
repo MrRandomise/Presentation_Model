@@ -6,15 +6,17 @@ namespace Lessons.Architecture.PM
     {
         public override void InstallBindings()
         {
-            Container.Bind<CharacterStatsManager>().AsTransient();
+            Container.Bind<CharacterManagerStats>().AsTransient();
             Container.Bind<CharacterInfo>().AsTransient();
             Container.Bind<CharacterStat>().AsTransient();
 
-            Container.Bind<CharacterLevelManager>().AsTransient();
+            Container.Bind<CharacterManager>().AsTransient();
+            Container.Bind<CharacterManagerLevel>().AsTransient();
+            Container.Bind<CharacterManagerInfo>().AsTransient();
             Container.Bind<PlayerLevel>().AsTransient();
+            Container.Bind<UserInfo>().AsTransient();
 
-            Container.Bind<CharacterManagerInfo>().AsSingle();
-            Container.Bind<UserInfo>().AsSingle();
+            Container.Bind<StatFieldPool>().AsSingle();
         }
     }
 }

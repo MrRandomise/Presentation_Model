@@ -5,11 +5,9 @@ namespace Lessons.Architecture.PM
     public sealed class CharacterManagerInfo
     {
         private UserInfo _userInfo;
-        private ServicePopup _servicePopup;
 
-        public CharacterManagerInfo(ServicePopup servicePopup, UserInfo userInfo)
+        public CharacterManagerInfo( UserInfo userInfo)
         {
-            _servicePopup = servicePopup;
             _userInfo = userInfo;
             _userInfo.OnNameChanged += SetName;
             _userInfo.OnDescriptionChanged += SetDesription;
@@ -25,24 +23,29 @@ namespace Lessons.Architecture.PM
 
         private void SetName(string name)
         {
-            _servicePopup.CharacterName.text = name;
+            Debug.Log($"Name has ben changed as {name}");
         }
 
         private void SetDesription(string description)
         {
-            _servicePopup.CharacterDescription.text = description;
+            Debug.Log($"Descrition has ben changed as {description}");
         }
         
         private void SetIcon(Sprite icon)
         {
-            _servicePopup.CharacterIcon.sprite = icon;
+            Debug.Log($"Icon has ben changed");
         }
 
-        public void ShowInfo(string name, string description, Sprite icon)
+        public void InitializeCharacterInfo(string name, string description, Sprite icon)
         {
             _userInfo.ChangeName(name);
             _userInfo.ChangeDescription(description);
             _userInfo.ChangeIcon(icon);
+        }
+
+        public UserInfo GetUserInfo()
+        {
+            return _userInfo;
         }
     }
 }

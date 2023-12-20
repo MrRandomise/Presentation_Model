@@ -10,8 +10,6 @@ namespace Lessons.Architecture.PM
     {
         public GameObject Popup;
 
-        public Button CloseButton;
-
         public TMP_Text CharacterName;
 
         public TMP_Text CharacterDescription;
@@ -22,10 +20,6 @@ namespace Lessons.Architecture.PM
 
         public Image CurrentProgressBar;
 
-        public Button LevelUpButton;
-
-        public Button AddExperience;
-
         public TMP_Text CurrExp;
 
         public TMP_Text NeedExp;
@@ -33,5 +27,9 @@ namespace Lessons.Architecture.PM
         public Sprite ActiveLevelButton;
 
         public Sprite DeactiveLevelButton;
+
+        public GameObject StatsContainer;
+
+        public StatField StatPrefab;
     }
 }
