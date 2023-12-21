@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class ChangeLevelAndExpButton
+    public sealed class ChangeLevelAndExpButton : IButton<CharacterManagerLevel, UpdateCharacterLevel>
     {
         private ServicePopupButton _serviceButton;
 
@@ -14,35 +14,33 @@ namespace Lessons.Architecture.PM
 
         private PlayerLevel _playerLevel;
 
-        private int _experience;
+        private ServicePopupField _servicePopupField;
 
-        public ChangeLevelAndExpButton(ServicePopupButton servicePopupButton, ServicePopup servicePopup)
+        public ChangeLevelAndExpButton(ServicePopupButton servicePopupButton, ServicePopup servicePopup, ServicePopupField servicePopupField)
         {
             _serviceButton = servicePopupButton;
             _servicePopup = servicePopup;
+            _servicePopupField = servicePopupField;
         }
 
-        public void InitialButton(CharacterManagerLevel characterManagerLevel, UpdateCharacterLevel updateCharacterLevel, int exp)
+        public void InitializeButtons(CharacterManagerLevel characterManagerLevel, UpdateCharacterLevel updateCharacterLevel)
         {
             _characterLevelManager = characterManagerLevel;
             _playerLevel = characterManagerLevel.GetLeveUp();
             _updateCharacterLevel = updateCharacterLevel;
-            _experience = exp;
-            ActivateButton();
+            _serviceButton.LevelUpButton.onClick.AddListener(LevelUp);
+            _serviceButton.AddExperience.onClick.AddListener(AddExperience);
+            StatusLevelUpButton();
         }
 
-        public void ActivateButton()
+        public void StatusLevelUpButton()
         {
             if (_playerLevel.CanLevelUp())
             {
-                _serviceButton.LevelUpButton.onClick.AddListener(LevelUp);
-                _serviceButton.AddExperience.onClick.RemoveListener(AddExperience);
                 _serviceButton.LevelUpButton.image.sprite = _servicePopup.ActiveLevelButton;
             }
             else
             {
-                _serviceButton.AddExperience.onClick.AddListener(AddExperience);
-                _serviceButton.LevelUpButton.onClick.RemoveListener(LevelUp);
                 _serviceButton.LevelUpButton.image.sprite = _servicePopup.DeactiveLevelButton;
             }
         }
@@ -50,23 +48,35 @@ namespace Lessons.Architecture.PM
         private void AddExperience()
         {
             var _addExp = _characterLevelManager.GetLeveUp();
-            if (_addExp.CurrentExperience >= _addExp.RequiredExperience)
+            var field = _servicePopupField.AddExpField.text;
+            if (CheckField(_addExp, field))
+            {
+                _addExp.AddExperience(int.Parse(field));
+                StatusLevelUpButton();
+                _updateCharacterLevel.ShowLevelUp();
+            }
+        }
+
+        private bool CheckField(PlayerLevel level, string name)
+        {
+            if (level.CurrentExperience >= level.RequiredExperience)
             {
                 Debug.LogWarning("You need to get a level up before you gain experience");
+                return false;
             }
-            else
+            if(string.IsNullOrWhiteSpace(name))
             {
-                _addExp.AddExperience(_experience);
+                Debug.LogWarning("The value being added already exists");
+                return false; 
             }
-            ActivateButton();
-            _updateCharacterLevel.ShowLevelUp();
+            return true;
         }
 
         private void LevelUp()
         {
             var _levelup = _characterLevelManager.GetLeveUp();
             _levelup.LevelUp();
-            ActivateButton();
+            StatusLevelUpButton();
             _updateCharacterLevel.ShowLevelUp();
         }
     }

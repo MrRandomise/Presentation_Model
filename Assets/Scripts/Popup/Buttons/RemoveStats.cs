@@ -1,6 +1,6 @@
 namespace Lessons.Architecture.PM
 {
-    public sealed class RemoveStats
+    public sealed class RemoveStats : IButton<CharacterInfo, UpdateCharacterStats>
     {
         private ServicePopupButton _servicePopupButton;
 

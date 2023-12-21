@@ -10,10 +10,10 @@ namespace Lessons.Architecture.PM
         private ServicePopup _servicePopup;
         private ServicePopupButton _servicePopupButton;
 
-        private ChangeLevelAndExpButton _expAndLevelButton;
-        private AddStatsButton _addStats;
-        private ChangeStats _changeStats;
-        private RemoveStats _removeStats;
+        private IButton<CharacterManagerLevel, UpdateCharacterLevel> _expAndLevelButton;
+        private IButton<CharacterInfo, UpdateCharacterStats> _addStats;
+        private IButton<CharacterInfo, UpdateCharacterStats> _changeStats;
+        private IButton<CharacterInfo, UpdateCharacterStats> _removeStats;
 
         public PopupManager(ServicePopup servicePopup, ServicePopupButton serviceButton, ChangeLevelAndExpButton changeLevelAndExpButton, AddStatsButton addStats, ChangeStats changeStats, RemoveStats removeStats)
         {
@@ -44,10 +44,10 @@ namespace Lessons.Architecture.PM
             var _characterInfo = _characterManager.GetManagerStats().GetCharacterStats();
             var _characterLevelManager = _characterManager.GetManagerLevel();
             var _characterConfig = _characterManager.GetCharacterConfig();
-            _addStats.InitializeButtons(_statConfig.StatsConfig.AdvancedStatsList, _characterInfo, _updateCharacterStats);
+            _addStats.InitializeButtons(_characterInfo, _updateCharacterStats);
             _changeStats.InitializeButtons(_characterInfo, _updateCharacterStats);
             _removeStats.InitializeButtons(_characterInfo, _updateCharacterStats);
-            _expAndLevelButton.InitialButton(_characterLevelManager, _updateCharacterLevel, _characterConfig.ExperienceAdd);
+            _expAndLevelButton.InitializeButtons(_characterLevelManager, _updateCharacterLevel);
             
         }
 

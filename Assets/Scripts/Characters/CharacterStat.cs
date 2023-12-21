@@ -14,6 +14,12 @@ namespace Lessons.Architecture.PM
         [field: SerializeField]
         public int Value { get; private set; }
 
+        public CharacterStat(string name, int value)
+        {
+            Name = name;
+            Value = value;
+        }
+
         public void ChangeValue(int value)
         {
             Value = value;

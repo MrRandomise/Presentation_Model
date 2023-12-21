@@ -1,40 +1,59 @@
-using System.Collections.Generic; 
+using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class AddStatsButton
+    public sealed class AddStatsButton : IButton<CharacterInfo, UpdateCharacterStats>
     {
         private ServicePopupButton _servicePopupButton;
-
-        private List<CharacterStat> _characterStatList = new List<CharacterStat>();
 
         private StatFieldPool _fieldPool;
 
         private CharacterInfo _characterInfo;
 
         private UpdateCharacterStats _updateCharacterStats;
-        public AddStatsButton(ServicePopupButton servicePopupButton, StatFieldPool fieldPool)
+
+        private ServicePopupField _servicePopupField;
+
+        public AddStatsButton(ServicePopupButton servicePopupButton, StatFieldPool fieldPool, ServicePopupField servicePopupField)
         {
             _servicePopupButton = servicePopupButton;
+            _servicePopupField = servicePopupField;
             _fieldPool = fieldPool;
         }
 
-        public void InitializeButtons(List<CharacterStat> list, CharacterInfo characterInfo, UpdateCharacterStats updateCharacterStats)
+        public void InitializeButtons(CharacterInfo characterInfo, UpdateCharacterStats updateCharacterStats)
         {
             _servicePopupButton.AddStats.onClick.AddListener(OnAddStats);
             _updateCharacterStats = updateCharacterStats;
-            _characterStatList = list;
             _characterInfo = characterInfo;
         }
 
         public void OnAddStats()
         {
-            foreach (CharacterStat characterStat in _characterStatList)
+            var name = _servicePopupField.AddStatField.text;
+            var value = _servicePopupField.AddStatValueField.text;
+            if (CheckField(name, value))
             {
-                _characterInfo.AddStat(characterStat);
+                var stat = new CharacterStat(name, int.Parse(value));
+                _characterInfo.AddStat(stat);
+                _fieldPool.AddPool(_characterInfo);
+                _updateCharacterStats.ShowStats();
             }
-            _fieldPool.AddPool(_characterInfo);
-            _updateCharacterStats.ShowStats();
+        }
+
+        private bool CheckField(string name, string value)
+        {
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(value))
+            {
+                Debug.LogWarning("Field name and value should not be empty");
+                return false;
+            }
+            if (_characterInfo.CheckStat(name))
+            {
+                Debug.LogWarning("The value being added already exists");
+                return false;
+            }
+            return true;
         }
     }
 }

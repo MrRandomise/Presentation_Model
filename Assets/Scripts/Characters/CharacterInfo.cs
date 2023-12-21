@@ -40,6 +40,18 @@ namespace Lessons.Architecture.PM
             throw new Exception($"Stat {name} is not found!");
         }
 
+        public bool CheckStat(string name)
+        {
+            foreach (var stat in Stats)
+            {
+                if (stat.Name == name)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
         public CharacterStat[] GetStats()
         {
             return Stats.ToArray();

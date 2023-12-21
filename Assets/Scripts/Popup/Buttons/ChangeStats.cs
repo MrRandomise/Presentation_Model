@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class ChangeStats
+    public sealed class ChangeStats : IButton<CharacterInfo, UpdateCharacterStats>
     {
         private ServicePopupButton _servicePopupButton;
 

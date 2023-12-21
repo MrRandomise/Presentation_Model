@@ -10,8 +10,6 @@ namespace Lessons.Architecture.PM
     public sealed class CharacterStatsConfig : ScriptableObject
     {
         public List<CharacterStat> StatsList = new List<CharacterStat>();
-
-        public List<CharacterStat> AdvancedStatsList = new List<CharacterStat>();
     }
 
 }
