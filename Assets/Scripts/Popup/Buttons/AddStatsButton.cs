@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class AddStatsButton : IButton<CharacterInfo, UpdateCharacterStats>
+    public sealed class AddStatsButton 
     {
         private ServicePopupButton _servicePopupButton;
 

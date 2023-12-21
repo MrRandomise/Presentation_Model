@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class ChangeStats : IButton<CharacterInfo, UpdateCharacterStats>
+    public sealed class ChangeStats 
     {
         private ServicePopupButton _servicePopupButton;
 
@@ -18,7 +18,7 @@ namespace Lessons.Architecture.PM
             _servicePopupField = servicePopupField;
         }
 
-        public void InitializeButtons(CharacterInfo characterInfo, UpdateCharacterStats updateCharacterStats)
+        public void InitializeButtons(CharacterInfo characterInfo, UpdateCharacterStats updateCharacterStats) 
         {
             _servicePopupButton.ChangeStats.onClick.AddListener(OnChange);
             _updateCharacterStats = updateCharacterStats;

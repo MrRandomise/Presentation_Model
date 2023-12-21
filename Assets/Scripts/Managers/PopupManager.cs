@@ -10,10 +10,10 @@ namespace Lessons.Architecture.PM
         private ServicePopup _servicePopup;
         private ServicePopupButton _servicePopupButton;
 
-        private IButton<CharacterManagerLevel, UpdateCharacterLevel> _expAndLevelButton;
-        private IButton<CharacterInfo, UpdateCharacterStats> _addStats;
-        private IButton<CharacterInfo, UpdateCharacterStats> _changeStats;
-        private IButton<CharacterInfo, UpdateCharacterStats> _removeStats;
+        private ChangeLevelAndExpButton _expAndLevelButton;
+        private AddStatsButton _addStats;
+        private ChangeStats _changeStats;
+        private RemoveStats _removeStats;
 
         public PopupManager(ServicePopup servicePopup, ServicePopupButton serviceButton, ChangeLevelAndExpButton changeLevelAndExpButton, AddStatsButton addStats, ChangeStats changeStats, RemoveStats removeStats)
         {
@@ -48,15 +48,14 @@ namespace Lessons.Architecture.PM
             _changeStats.InitializeButtons(_characterInfo, _updateCharacterStats);
             _removeStats.InitializeButtons(_characterInfo, _updateCharacterStats);
             _expAndLevelButton.InitializeButtons(_characterLevelManager, _updateCharacterLevel);
-            
         }
 
         public void ShowPopupCharacter()
         {
             buttonInitialize();
-            _updateCharacterStats.ShowStats();
             _updateCharacterInfo.ShowInfo();
             _updateCharacterLevel.ShowLevelUp();
+            _updateCharacterStats.ShowStats();
             _servicePopup.Popup.SetActive(true);
         }
     }

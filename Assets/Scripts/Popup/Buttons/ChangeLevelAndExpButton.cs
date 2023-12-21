@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class ChangeLevelAndExpButton : IButton<CharacterManagerLevel, UpdateCharacterLevel>
+    public sealed class ChangeLevelAndExpButton
     {
         private ServicePopupButton _serviceButton;
 
