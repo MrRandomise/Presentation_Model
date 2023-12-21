@@ -32,7 +32,7 @@ namespace Lessons.Architecture.PM
         {
             var name = _servicePopupField.AddStatField.text;
             var value = _servicePopupField.AddStatValueField.text;
-            if (CheckField(name, value))
+            if (TrygGetFieldWarning(name, value))
             {
                 var stat = new CharacterStat(name, int.Parse(value));
                 _characterInfo.AddStat(stat);
@@ -41,7 +41,7 @@ namespace Lessons.Architecture.PM
             }
         }
 
-        private bool CheckField(string name, string value)
+        private bool TrygGetFieldWarning(string name, string value)
         {
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(value))
             {

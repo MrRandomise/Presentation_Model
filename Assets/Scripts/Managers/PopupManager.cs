@@ -38,7 +38,7 @@ namespace Lessons.Architecture.PM
             _updateCharacterStats = new UpdateCharacterStats(_characterStatsManager, _statsFieldPool);
         }
 
-        private void buttonInitialize()
+        private void ButtonInitialize()
         {
             var _statConfig = _characterManager.GetCharacterConfig();
             var _characterInfo = _characterManager.GetManagerStats().GetCharacterStats();
@@ -52,7 +52,7 @@ namespace Lessons.Architecture.PM
 
         public void ShowPopupCharacter()
         {
-            buttonInitialize();
+            ButtonInitialize();
             _updateCharacterInfo.ShowInfo();
             _updateCharacterLevel.ShowLevelUp();
             _updateCharacterStats.ShowStats();

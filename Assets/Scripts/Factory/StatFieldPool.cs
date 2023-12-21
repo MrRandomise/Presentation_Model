@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System;
 
 namespace Lessons.Architecture.PM
 {
@@ -9,7 +8,6 @@ namespace Lessons.Architecture.PM
 
         private ServicePopup _servicePopup;
 
-        private int _lastField = 1;
 
         public StatFieldPool(ServicePopup servicePopup) 
         {
@@ -25,18 +23,6 @@ namespace Lessons.Architecture.PM
                 _statField.transform.SetParent(_servicePopup.StatsContainer.transform);
                 _statFieldList.Add(_statField);
                 _statField.gameObject.SetActive(false);
-            }
-        }
-
-        public void RemovePool()
-        {
-            if(_statFieldList.Count - 1> 0)
-            {
-                _statFieldList.Remove(_statFieldList[_statFieldList.Count - _lastField]);
-            }
-            else
-            {
-                throw new Exception($"No field to remove");
             }
         }
 

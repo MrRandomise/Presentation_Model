@@ -49,7 +49,7 @@ namespace Lessons.Architecture.PM
         {
             var _addExp = _characterLevelManager.GetLeveUp();
             var field = _servicePopupField.AddExpField.text;
-            if (CheckField(_addExp, field))
+            if (TrygGetFieldWarning(_addExp, field))
             {
                 _addExp.AddExperience(int.Parse(field));
                 StatusLevelUpButton();
@@ -57,7 +57,7 @@ namespace Lessons.Architecture.PM
             }
         }
 
-        private bool CheckField(PlayerLevel level, string name)
+        private bool TrygGetFieldWarning(PlayerLevel level, string name)
         {
             if (level.CurrentExperience >= level.RequiredExperience)
             {
