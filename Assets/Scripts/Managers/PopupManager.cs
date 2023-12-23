@@ -8,14 +8,14 @@ namespace Lessons.Architecture.PM
         private UpdateCharacterStats _updateCharacterStats;
         
         private ServicePopup _servicePopup;
-        private ServicePopupButton _servicePopupButton;
+        private ServiceControlButton _servicePopupButton;
 
         private ChangeLevelAndExpButton _expAndLevelButton;
         private AddStatsButton _addStats;
         private ChangeStats _changeStats;
         private RemoveStats _removeStats;
 
-        public PopupManager(ServicePopup servicePopup, ServicePopupButton serviceButton, ChangeLevelAndExpButton changeLevelAndExpButton, AddStatsButton addStats, ChangeStats changeStats, RemoveStats removeStats)
+        public PopupManager(ServicePopup servicePopup, ServiceControlButton serviceButton, ChangeLevelAndExpButton changeLevelAndExpButton, AddStatsButton addStats, ChangeStats changeStats, RemoveStats removeStats)
         {
             _servicePopup = servicePopup;
             _servicePopupButton = serviceButton;
@@ -34,7 +34,7 @@ namespace Lessons.Architecture.PM
             var _statsFieldPool = characterManager.GetStatsFieldPool();
             var _characterConfig = characterManager.GetCharacterConfig();
             _updateCharacterInfo = new UpdateCharacterInfo(_servicePopup, _characterInfo);
-            _updateCharacterLevel = new UpdateCharacterLevel(_servicePopup, _servicePopupButton, _characterLevelManager);
+            _updateCharacterLevel = new UpdateCharacterLevel(_servicePopup, _characterLevelManager);
             _updateCharacterStats = new UpdateCharacterStats(_characterStatsManager, _statsFieldPool);
         }
 

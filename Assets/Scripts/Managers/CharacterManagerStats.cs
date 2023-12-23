@@ -1,22 +1,23 @@
+using System;
 using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class CharacterManagerStats
+    public sealed class CharacterManagerStats : IDisposable
     {
         private CharacterInfo _characterInfo;
 
         private StatFieldPool _statFieldPool;
 
-        public CharacterManagerStats(CharacterInfo characterInfo, StatFieldPool statFieldPool)
+        public CharacterManagerStats(StatFieldPool statFieldPool)
         {
-            _characterInfo = characterInfo;
+            _characterInfo = new CharacterInfo();
             _statFieldPool = statFieldPool;
             _characterInfo.OnStatAdded += AddNewStat;
             _characterInfo.OnStatRemoved += RemoveStat;
         }
 
-        ~CharacterManagerStats()
+        public void Dispose()
         {
             _characterInfo.OnStatAdded -= AddNewStat;
             _characterInfo.OnStatRemoved -= RemoveStat;

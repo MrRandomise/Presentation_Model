@@ -19,8 +19,8 @@ namespace Lessons.Architecture.PM
             var count = characterInfo.Stats.Count - _statFieldList.Count;
             for(int i = 0; i < count; i++)
             {
-                var _statField = UnityEngine.Object.Instantiate(_servicePopup.StatPrefab);
-                _statField.transform.SetParent(_servicePopup.StatsContainer.transform);
+                var _statField = UnityEngine.Object.Instantiate(_servicePopup.Stats.StatPrefab);
+                _statField.transform.SetParent(_servicePopup.Stats.StatsContainer.transform);
                 _statFieldList.Add(_statField);
                 _statField.gameObject.SetActive(false);
             }

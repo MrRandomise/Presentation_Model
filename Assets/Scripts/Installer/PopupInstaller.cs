@@ -6,13 +6,12 @@ namespace Lessons.Architecture.PM
     public sealed class PopupInstaller : MonoInstaller
     {
         [SerializeField] private ServicePopup _ServicePopup;
-        [SerializeField] private ServicePopupButton _popupButton;
-        [SerializeField] private ServicePopupField _popupField;
+        [SerializeField] private ServiceControlButton _popupButton;
+
         public override void InstallBindings()
         {
             Container.Bind<ServicePopup>().FromInstance(_ServicePopup).AsSingle();
-            Container.Bind<ServicePopupButton>().FromInstance(_popupButton).AsSingle();
-            Container.Bind<ServicePopupField>().FromInstance(_popupField).AsSingle();
+            Container.Bind<ServiceControlButton>().FromInstance(_popupButton).AsSingle();
 
             Container.Bind<PopupManager>().AsTransient();
 

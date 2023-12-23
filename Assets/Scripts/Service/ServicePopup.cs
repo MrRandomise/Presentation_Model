@@ -1,8 +1,6 @@
 using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 namespace Lessons.Architecture.PM
 {
     [Serializable]
@@ -10,26 +8,16 @@ namespace Lessons.Architecture.PM
     {
         public GameObject Popup;
 
-        public TMP_Text CharacterName;
+        public Button CloseButton;
 
-        public TMP_Text CharacterDescription;
+        public Title Title;
 
-        public TMP_Text CharactterCurrLevel;
+        public Info Info;
 
-        public Image CharacterIcon;
+        public ProgressBar ProgressBar;
 
-        public Image CurrentProgressBar;
+        public Stats Stats;
 
-        public TMP_Text CurrExp;
-
-        public TMP_Text NeedExp;
-
-        public Sprite ActiveLevelButton;
-
-        public Sprite DeactiveLevelButton;
-
-        public GameObject StatsContainer;
-
-        public StatField StatPrefab;
+        public LevelUp LevelUp;
     }
 }

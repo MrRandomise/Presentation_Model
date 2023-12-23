@@ -4,7 +4,7 @@ namespace Lessons.Architecture.PM
 {
     public sealed class ChangeLevelAndExpButton
     {
-        private ServicePopupButton _serviceButton;
+        private ServiceControlButton _serviceButton;
 
         private ServicePopup _servicePopup;
 
@@ -14,13 +14,10 @@ namespace Lessons.Architecture.PM
 
         private PlayerLevel _playerLevel;
 
-        private ServicePopupField _servicePopupField;
-
-        public ChangeLevelAndExpButton(ServicePopupButton servicePopupButton, ServicePopup servicePopup, ServicePopupField servicePopupField)
+        public ChangeLevelAndExpButton(ServiceControlButton servicePopupButton, ServicePopup servicePopup)
         {
             _serviceButton = servicePopupButton;
             _servicePopup = servicePopup;
-            _servicePopupField = servicePopupField;
         }
 
         public void InitializeButtons(CharacterManagerLevel characterManagerLevel, UpdateCharacterLevel updateCharacterLevel)
@@ -28,8 +25,8 @@ namespace Lessons.Architecture.PM
             _characterLevelManager = characterManagerLevel;
             _playerLevel = characterManagerLevel.GetLeveUp();
             _updateCharacterLevel = updateCharacterLevel;
-            _serviceButton.LevelUpButton.onClick.AddListener(LevelUp);
-            _serviceButton.AddExperience.onClick.AddListener(AddExperience);
+            _servicePopup.LevelUp.LevelUpButton.onClick.AddListener(LevelUp);
+            _serviceButton.AddExpControl.AddExp.onClick.AddListener(AddExperience);
             StatusLevelUpButton();
         }
 
@@ -37,18 +34,18 @@ namespace Lessons.Architecture.PM
         {
             if (_playerLevel.CanLevelUp())
             {
-                _serviceButton.LevelUpButton.image.sprite = _servicePopup.ActiveLevelButton;
+                _servicePopup.LevelUp.LevelUpButton.image.sprite = _servicePopup.LevelUp.ActiveLevelButton;
             }
             else
             {
-                _serviceButton.LevelUpButton.image.sprite = _servicePopup.DeactiveLevelButton;
+                _servicePopup.LevelUp.LevelUpButton.image.sprite = _servicePopup.LevelUp.DeactiveLevelButton;
             }
         }
 
         private void AddExperience()
         {
             var _addExp = _characterLevelManager.GetLeveUp();
-            var field = _servicePopupField.AddExpField.text;
+            var field = _serviceButton.AddExpControl.AddExpField.text;
             if (TrygGetFieldWarning(_addExp, field))
             {
                 _addExp.AddExperience(int.Parse(field));

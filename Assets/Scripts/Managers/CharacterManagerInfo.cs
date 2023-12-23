@@ -1,20 +1,21 @@
+using System;
 using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class CharacterManagerInfo
+    public sealed class CharacterManagerInfo : IDisposable
     {
         private UserInfo _userInfo;
 
-        public CharacterManagerInfo( UserInfo userInfo)
+        public CharacterManagerInfo()
         {
-            _userInfo = userInfo;
+            _userInfo = new UserInfo();
             _userInfo.OnNameChanged += SetName;
             _userInfo.OnDescriptionChanged += SetDesription;
             _userInfo.OnIconChanged += SetIcon;
         }
 
-        ~CharacterManagerInfo()
+        public void Dispose()
         {
             _userInfo.OnNameChanged -= SetName;
             _userInfo.OnDescriptionChanged -= SetDesription;

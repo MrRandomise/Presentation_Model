@@ -27,17 +27,18 @@ namespace Lessons.Architecture.PM
             }
         }
 
-        public CharacterStat GetStat(string name)
+        public bool TryGetStat(string name, out CharacterStat characterStat)
         {
             foreach (var stat in Stats)
             {
                 if (stat.Name == name)
                 {
-                    return stat;
+                    characterStat = stat;
+                    return true;
                 }
             }
-
-            throw new Exception($"Stat {name} is not found!");
+            characterStat = null;
+            return false;
         }
 
         public bool CheckStat(string name)

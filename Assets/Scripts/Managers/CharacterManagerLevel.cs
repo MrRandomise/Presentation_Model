@@ -1,19 +1,20 @@
+using System;
 using UnityEngine;
 
 namespace Lessons.Architecture.PM
 {
-    public sealed class CharacterManagerLevel
+    public sealed class CharacterManagerLevel : IDisposable
     {
         private PlayerLevel _playerLevel;
 
-        public CharacterManagerLevel(PlayerLevel playerLevel)
+        public CharacterManagerLevel()
         {
-            _playerLevel = playerLevel;
+            _playerLevel = new PlayerLevel();
             _playerLevel.OnExperienceChanged += ExpAdd;
             _playerLevel.OnLevelUp += LevelUp;
         }
 
-        ~CharacterManagerLevel()
+        public void Dispose()
         {
             _playerLevel.OnExperienceChanged -= ExpAdd;
             _playerLevel.OnLevelUp -= LevelUp;

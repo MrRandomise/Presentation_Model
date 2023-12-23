@@ -14,9 +14,9 @@ namespace Lessons.Architecture.PM
         public void ShowInfo()
         {
             var _userInfo = _characterInfo.GetUserInfo();
-            _servicePopup.CharacterName.text = _userInfo.Name;
-            _servicePopup.CharacterDescription.text = _userInfo.Description;
-            _servicePopup.CharacterIcon.sprite = _userInfo.Icon;
+            _servicePopup.Title.CharacterName.text = _userInfo.Name;
+            _servicePopup.Info.CharacterDescription.text = _userInfo.Description;
+            _servicePopup.Info.CharacterIcon.sprite = _userInfo.Icon;
         }
     }
 }

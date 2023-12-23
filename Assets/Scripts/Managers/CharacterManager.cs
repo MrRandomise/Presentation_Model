@@ -8,11 +8,11 @@ namespace Lessons.Architecture.PM
         private CharactersConfig _characterConfig;
         private StatFieldPool _statsFieldPool;
 
-        public CharacterManager(CharacterManagerInfo userInfo, CharacterManagerStats characterStatsManager, CharacterManagerLevel characterLevelManager, StatFieldPool statsFieldPool)
+        public CharacterManager(CharacterManagerStats characterStatsManager, StatFieldPool statsFieldPool)
         {
-            _characterManagerInfo = userInfo;
+            _characterManagerInfo = new CharacterManagerInfo();
+            _characterLevelManager = new CharacterManagerLevel();
             _characterStatsManager = characterStatsManager;
-            _characterLevelManager = characterLevelManager;
             _statsFieldPool = statsFieldPool;
         }
 

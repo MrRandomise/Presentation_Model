@@ -4,7 +4,7 @@ namespace Lessons.Architecture.PM
 {
     public sealed class AddStatsButton 
     {
-        private ServicePopupButton _servicePopupButton;
+        private ServiceControlButton _servicePopupButton;
 
         private StatFieldPool _fieldPool;
 
@@ -12,26 +12,23 @@ namespace Lessons.Architecture.PM
 
         private UpdateCharacterStats _updateCharacterStats;
 
-        private ServicePopupField _servicePopupField;
-
-        public AddStatsButton(ServicePopupButton servicePopupButton, StatFieldPool fieldPool, ServicePopupField servicePopupField)
+        public AddStatsButton(ServiceControlButton servicePopupButton, StatFieldPool fieldPool)
         {
             _servicePopupButton = servicePopupButton;
-            _servicePopupField = servicePopupField;
             _fieldPool = fieldPool;
         }
 
         public void InitializeButtons(CharacterInfo characterInfo, UpdateCharacterStats updateCharacterStats)
         {
-            _servicePopupButton.AddStats.onClick.AddListener(OnAddStats);
+            _servicePopupButton.AddStatControl.AddStatButton.onClick.AddListener(OnAddStats);
             _updateCharacterStats = updateCharacterStats;
             _characterInfo = characterInfo;
         }
 
         public void OnAddStats()
         {
-            var name = _servicePopupField.AddStatField.text;
-            var value = _servicePopupField.AddStatValueField.text;
+            var name = _servicePopupButton.AddStatControl.AddStatField.text;
+            var value = _servicePopupButton.AddStatControl.AddStatValueField.text;
             if (TrygGetFieldWarning(name, value))
             {
                 var stat = new CharacterStat(name, int.Parse(value));

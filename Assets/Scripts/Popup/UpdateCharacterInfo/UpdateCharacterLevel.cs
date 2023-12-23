@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Lessons.Architecture.PM
 {
     public class UpdateCharacterLevel
@@ -8,7 +6,7 @@ namespace Lessons.Architecture.PM
 
         private CharacterManagerLevel _characterLevelManager;
 
-        public UpdateCharacterLevel(ServicePopup servicePopup, ServicePopupButton servicePopupButton, CharacterManagerLevel characterLevelManager)
+        public UpdateCharacterLevel(ServicePopup servicePopup, CharacterManagerLevel characterLevelManager)
         {
             _servicePopup = servicePopup;
             _characterLevelManager = characterLevelManager;        
@@ -17,10 +15,9 @@ namespace Lessons.Architecture.PM
         public void ShowLevelUp()
         {
             var _playerLevel = _characterLevelManager.GetLeveUp();
-            _servicePopup.CharactterCurrLevel.text = $"Level : {_playerLevel.CurrentLevel}";
-            _servicePopup.CurrentProgressBar.fillAmount = CurrentProgressBarValue(_playerLevel.CurrentExperience, _playerLevel.RequiredExperience);
-            _servicePopup.CurrExp.text = $"XP : {_playerLevel.CurrentExperience}";
-            _servicePopup.NeedExp.text = $"/ {_playerLevel.RequiredExperience}";
+            _servicePopup.Info.CharactterCurrLevel.text = $"Level : {_playerLevel.CurrentLevel}";
+            _servicePopup.ProgressBar.CurrentProgressBar.fillAmount = CurrentProgressBarValue(_playerLevel.CurrentExperience, _playerLevel.RequiredExperience);
+            _servicePopup.ProgressBar.Exp.text = $"XP : {_playerLevel.CurrentExperience} / {_playerLevel.RequiredExperience}";
         }
 
         private float CurrentProgressBarValue(float currExp, float requiredExp)
